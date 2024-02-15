@@ -12,6 +12,7 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
 
   namespace :admin do
     get 'homes/top'
+    resources :customers, only: [:index, :show, :edit]
     resources :orders, only: [:show, :update] do
       resources :order_details, only:[:update]
     end
@@ -20,6 +21,7 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
   end
 
   scope module: :public do
+    resources :customers, only: [:show, :edit]
     resources :addresses, only: [:index, :create, :edit, :update, :destroy]
     resources :orders, only: [:new, :index, :show,]
     post 'orders/confirm', as:'confirm'
