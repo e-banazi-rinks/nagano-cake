@@ -5,9 +5,17 @@ Rails.application.routes.draw do
   sessions: 'public/sessions'
 }
 
-devise_for :admin, skip: [:registrations, :passwords], controllers: {
+devise_scope :customer do
+  get 'customers/sign_out', to: 'public/sessions#destroy'
+end
+
+  devise_for :admin, skip: [:registrations, :passwords], controllers: {
   sessions: "admin/sessions"
-}
+}, path: 'admin', path_names: {sign_out: 'logout' }
+
+devise_scope :admin do
+  get 'admin/logout', to: 'admin/sessions#destroy'
+end
 
   namespace :admin do
     get 'homes/top'
