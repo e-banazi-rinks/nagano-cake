@@ -1,13 +1,30 @@
-<h6>ジャンル検索</h6>
-<P>ケーキ</P>
-<P>焼き菓子</P>
-<P>プリン</P>
-<P>キャンディ</P>
+<h1>商品詳細</h1>
 
-<%= @item.name %>
-<%= @item.introduction %>
-<%= @item.price %>
+<table>
+  <tr>
+    <th>商品画像</th>
+    <td><%= @item.introduction %></td>
+  </tr>
+  <tr>
+    <th>商品名</th>
+    <td><%= @item.name%></td>
+  </tr>
+  <tr>
+    <th>商品説明</th>
+    <td><%= @item.introduction %></td>
+  </tr>
+  <tr>
+    <th>ジャンル</th>
+    <td><%#= @item. %></td>
+  </tr>
+  <tr>
+    <th>税込価格</th>
+    <td><%= @item.price %></td>
+  </tr>
+  <tr>
+    <th>販売ステータス</th>
+    <td><%#= @item.price %></td>
+  </tr>
+</table>
 
-
-
-
+ <%= link_to "この商品を編集する", edit_admin_item_path(@item)
