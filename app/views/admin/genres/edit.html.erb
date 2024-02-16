@@ -1,6 +1,7 @@
 <h2>ジャンル編集</h2>
 
 <p>ジャンル名</p>
-<%= form_with model: @genre do |f| %>
+<%= form_with model: @genre, url:'/genres/:id', method: :patch do |f| %>
 <%= f.text_area :name %>
 <%= f.submit '変更を保存' %>
+<% end %>
