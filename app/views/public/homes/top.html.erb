@@ -4,4 +4,17 @@
 <p>購入には会員登録が必要になります。</p>
 
 <h1>新着商品</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<div class="new_items" style="display: :flex; justify-content: space-around; padding: 0 110px;">
+    <% @items.each do |item| %>
+    <div style = "padding: 10px; background-color: #ffffff; flex: 1; margin: 10px;">
+      <% if item.image.attached? %>
+        <%= image_tag item.image, size: "200x200" %>
+      <% else %>
+        <% image_tag "no_image",size: "200x200" %>
+      <% end %>
+      <h5><%= item.name %></h5>
+      <h5>¥<%= number_with_delimiter(item.price) %></h5>
+    <% end %>
+    </div>
+</div>
+<%= link_to 'すべての商品を見る', items_path %>
