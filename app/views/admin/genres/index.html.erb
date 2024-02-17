@@ -2,7 +2,7 @@
 
 <p>ジャンル名</p>
 
-<%= form_with model: @genre, url: 'genres', method: :post do |f| %>
+<%= form_with model: @genre, url: '/admin/genres', method: :post do |f| %>
 <%= f.text_field :name %>
 <%= f.submit '新規登録' %>
 <% end %>
