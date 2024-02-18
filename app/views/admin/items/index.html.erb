@@ -13,8 +13,8 @@
       <% @items.each do |item| %>
       <tr>
         <th><%= item.id %></th>
-        <th><%= item.name %></th>
-        <th><%= item.price %></th>
+        <th><%= link_to item.name, admin_item_path(item.id) %></th>
+        <th><%= item.price %>円</th>
         <th><%= item.genre.name %></th>
         <th><%= item.on_sale? ? '販売中' : '販売停止中' %></th>
       </tr>
