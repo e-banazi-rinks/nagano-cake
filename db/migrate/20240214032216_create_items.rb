@@ -6,7 +6,6 @@ class CreateItems < ActiveRecord::Migration[6.1]
       t.integer :price
       t.boolean :is_active
       t.integer :genre_id
-
       t.timestamps
     end
   end
