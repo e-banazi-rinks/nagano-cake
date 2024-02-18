@@ -1,3 +1,5 @@
+<%= render 'layouts/error',obj: @item %>
+
 <h1>商品編集</h1>
 <%= form_for @item, url: admin_item_path(@item) do |f| %>
 
@@ -15,12 +17,23 @@
   
   <h4>ジャンル</h4>
   <%= f.label :ジャンル名 %>
+  <%= f.select :genre_id, options_from_collection_for_select(@genres, :id, :name), include_blank: "選択してください" %>
   
   <h4>税抜価格</h4>
   <%= f.label :税抜価格 %>
   <%= f.text_field :price %>
   
   <h4>販売ステータス</h4>
+   <div class="col-sm-9">
+    <div class="custom-control custom-radio custom-control-inline">
+      <%= f.radio_button :status, 'on_sale', checked: @item.status == 'on_sale', class: 'custom-control-input', id: 'status-on-sale' %>
+      <%= f.label :status, '販売中', class: 'custom-control-label', for: 'status-on-sale' %>
+    </div>
+    <div class="custom-control custom-radio custom-control-inline">
+      <%= f.radio_button :status, 'off_sale', checked: @item.status == 'off_sale', class: 'custom-control-input', id: 'status-off-sale' %>
+      <%= f.label :status, '販売停止中', class: 'custom-control-label', for: 'status-off-sale' %>
+    </div>
+  </div>
   
   <%= f.submit '変更を保存' %>
 <% end %>
