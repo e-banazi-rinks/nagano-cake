@@ -93,7 +93,7 @@ ActiveRecord::Schema.define(version: 2024_02_16_150052) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.string "name" 
+    t.string "name"
     t.text "introduction"
     t.integer "price"
     t.boolean "is_active"
