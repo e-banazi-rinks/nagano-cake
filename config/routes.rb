@@ -19,6 +19,7 @@ end
 
   namespace :admin do
     get 'homes/top'
+    root to: 'homes#top'
     resources :orders, only: [:show, :update] do
       resources :order_details, only:[:update]
     end
