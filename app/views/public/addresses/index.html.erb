@@ -1,22 +1,49 @@
-<h1>配送先一覧</h1>
-<p>Find me in app/views/public/addresses/index.html.erb</p>
-<!----  form_withフォーム  >
-<!----  郵便番号のラベル  >
-<!----  郵便番号のテキストフィールド  >
-<!----  住所のラベル  >
-<!----  住所のテキストフィールド  >
-<!----  宛名のラベル  >
-<!----  宛名のテキストフィールド  >
-<!----  新規登録のボタン  >
+<h1>配送先登録/一覧</h1>
 
-<!---- テーブルタグ>
-<!---- 確かthead>
-<!---- カラムを３つ・空白が１つ>
+<%= form_with model:@address, local:true do |f| %>
+  <div class="form-group">
+    <%= f.label :郵便番号（ハイフンなし） %>
+    <%= f.text_field :post_code %>
+  </div>
 
-<!---- 確かtbody>
-<!---- tr>
-<!---- td 郵便番号>
-<!---- td 住所>
-<!---- td 宛名>
-<!---- td 編集するボタン・削除するボタン>
+  <div class="form-group">
+    <%= f.label :住所 %>
+    <%= f.text_field :address %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :宛名 %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit "新規登録", class: 'btn btn-success' %>
+  </div>
+<% end %>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>郵便番号</th>
+      <th>住所</th>
+      <th>宛名</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+       <% @addresses.each do |address| %>
+      <tr>
+        <td><%= address.post_code %></td>
+        <td><%= address.address %></td>
+        <td><%= address.name %></td>
+        <td>
+          <%= link_to "編集する", edit_address_path(address.customer_id), class: 'btn btn-success' %>
+          <%= link_to "削除する", address_path(address),　method: :delete, class: 'btn btn-danger' %>
+        </td>
+      </tr>
+      <% end %>
+  </tbody>
+</table>
+
 
