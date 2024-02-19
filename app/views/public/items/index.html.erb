@@ -1,2 +1,28 @@
-<h1>商品一覧</h1>
-<p>Find me in app/views/public/items/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+       <div class="genre_search_bar"></div>
+    </div>
+
+    <div class="col-md-9">
+        <div class="items-container-title">
+          <h1>商品一覧</h1>
+          <strong>全<%= @items.count %>件</strong>
+        </div>
+　    　<div class=item_lists>
+          <% @items.each do |item| %>
+            <%= link_to item_path(item.id) do %>  <!-- 商品画像・ない場合は"no_image.jpg" -->
+              <% if item.image.attached? %>
+                <%= image_tag item.image, size: "200x100" %>
+              <% else %>
+                <% image_tag "no_image",size: "200x100" %>
+              <% end %>
+            <% end %>
+            <p><%= item.name %></p>
+            <p><%= (item.price*1.1).floor.to_s(:delimited)%>(税込)</p>  <!-- 現状：税抜価格/おそらく、税込み価格に変更必要あり -->
+          <% end %>
+        </div>
+        <%= paginate @items %>   <!--  ページネーションを入れる  -->
+    </div>
+  </div>
+</div>
