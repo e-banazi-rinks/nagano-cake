@@ -6,6 +6,15 @@ class Public::SessionsController < Devise::SessionsController
   def after_sign_in_path_for(resource)
     root_path
   end
+  
+  def customer_state
+    @customer = customer.find_by(email: params[:user][:email])
+    if @customer
+      if @customer.valid_password?(params[:user][:password]) && !@customer.is_active
+        redirect_to new_customer_session_path
+      end
+    end
+  end
 
   # GET /resource/sign_in
   # def new

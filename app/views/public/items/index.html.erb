@@ -19,7 +19,7 @@
               <% end %>
             <% end %>
             <p><%= item.name %></p>
-            <p><%= (item.price*1.1).floor.to_s(:delimited)%>(税込)</p>  <!-- 現状：税抜価格/おそらく、税込み価格に変更必要あり -->
+            <p><%= (item.price*1.1).floor.to_s(:delimited)%>(税込)</p>
           <% end %>
         </div>
         <%= paginate @items %>   <!--  ページネーションを入れる  -->
