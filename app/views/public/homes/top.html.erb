@@ -7,14 +7,16 @@
 <div class="new_items" style="display: :flex; justify-content: space-around; padding: 0 110px;">
     <% @items.each do |item| %>
     <div style = "padding: 10px; background-color: #ffffff; flex: 1; margin: 10px;">
-      <% if item.image.attached? %>
-        <%= image_tag item.image, size: "200x200" %>
-      <% else %>
+      <%= link_to item_path(item.id) do %>  <!-- 商品画像・ない場合は"no_image.jpg" -->
+        <% if item.image.attached? %>
+          <%= image_tag item.image, size: "200x200" %>
+        <% else %>
         <% image_tag "no_image",size: "200x200" %>
+        <% end %>
+        <% end %>
+        <h5><%= item.name %></h5>
+        <p><%= (item.price*1.1).floor.to_s(:delimited)%>(税込)</p>  
       <% end %>
-      <h5><%= item.name %></h5>
-      <h5>¥<%= number_with_delimiter(item.price) %></h5>
-    <% end %>
     </div>
 </div>
 <%= link_to 'すべての商品を見る', items_path %>

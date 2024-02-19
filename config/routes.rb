@@ -29,6 +29,9 @@ end
   scope module: :public do
     resources :addresses, only: [:index, :create, :edit, :update, :destroy]
     resources :orders, only: [:new, :index, :show,]
+    get 'customers/unsubscribe', as:'unsubscribe'
+    patch 'customers/withdraw', as:'withdraw'
+    resources :customers, only: [:show, :edit, :update]
     post 'orders/confirm', as:'confirm'
     get 'orders/thanks', as:'thanks'
     resources :cart_items, only: [:index, :create, :update, :destroy]
