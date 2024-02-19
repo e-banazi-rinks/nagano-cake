@@ -1,22 +1,36 @@
-<p>ようこそ、ながのCAKE！</p>
-<p>このサイトは、ケーキ販売のECサイトになります。</p>
-<p>会員でない方も商品の閲覧はできますが、</p>
-<p>購入には会員登録が必要になります。</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="genre_search_bar"></div>   <!--  検索サイドバー/実装予定  -->
 
-<h1>新着商品</h1>
-<div class="new_items" style="display: :flex; justify-content: space-around; padding: 0 110px;">
-    <% @items.each do |item| %>
-    <div style = "padding: 10px; background-color: #ffffff; flex: 1; margin: 10px;">
-      <%= link_to item_path(item.id) do %>  <!-- 商品画像・ない場合は"no_image.jpg" -->
-        <% if item.image.attached? %>
-          <%= image_tag item.image, size: "200x200" %>
-        <% else %>
-        <% image_tag "no_image",size: "200x200" %>
+    <div class="col-md-9">
+      <div class="introduction-box">　　<!-- 紹介文 -->
+        <div class="introduction-text">
+          <p>ようこそ、ながのCAKE！</p>
+          <p>このサイトは、ケーキ販売のECサイトになります。</p>
+          <p>会員でない方も商品の閲覧はできますが、</p>
+          <p>購入には会員登録が必要になります。</p>
+        </div>
+      </div>
+
+      <h1>新着商品</h1>
+      <div class="new-items-container">  <!-- 新着商品を横並びにする必要あり -->
+        <% @items.each do |item| %>
+           <div class="new-items", style="display: flex;"> <!-- 商品画像・ない場合は"no_image.jpg" -->
+             <%= link_to item_path(item.id) do %>
+               <% if item.image.attached? %>
+                 <%= image_tag item.image, size: "200x100" %>
+               <% else %>
+                 <% image_tag "no_image",size: "200x100" %>
+               <% end %>
+             <% end %>
+             <p><%= item.name %></p>
+             <p>¥<%= number_with_delimiter(item.price) %></p>  <!-- 現状：税抜価格/おそらく、税込み価格に変更必要あり -->
+           </div>
         <% end %>
-        <% end %>
-        <h5><%= item.name %></h5>
-        <p><%= (item.price*1.1).floor.to_s(:delimited)%>(税込)</p>  
-      <% end %>
+      </div>
+      <%= link_to 'すべての商品を見る', items_path %>
+>>>>>>> develop
     </div>
 </div>
-<%= link_to 'すべての商品を見る', items_path %>
+
