@@ -1,13 +1,13 @@
 class Public::CustomersController < ApplicationController
   before_action :authenticate_customer!
-  
+
   def show
     @customer = current_customer
   end
 
   def edit
   end
-  
+
   def update
     @customer = current_customer
     if @customer.update(customer_params)
@@ -16,13 +16,13 @@ class Public::CustomersController < ApplicationController
       render "edit"
     end
   end
-  
+
   def unsubscribe
     @customer = Customer.find_by(email: params[:email])
   end
-  
+
   def withdraw
-    @customer = Customer.find_by(email: params[:email])
+    @customer = Customer.find(current_customer.id)
     @customer.update(is_active: false)
     reset_session
     redirect_to root_path
