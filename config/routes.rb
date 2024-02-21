@@ -25,6 +25,7 @@ end
     end
     resources :genres, only: [:index, :create, :edit, :update]
     resources :items, only: [:new, :create, :index, :show, :edit, :update]
+    resources :customers, only: [:index, :show, :update]
   end
 
   scope module: :public do
@@ -35,8 +36,8 @@ end
     resources :customers, only: [:show, :edit, :update]
     post 'orders/confirm', as:'confirm'
     get 'orders/thanks', as:'thanks'
-    resources :cart_items, only: [:index, :create, :update, :destroy]
     delete 'cart_items/destroy_all', as:'destroy_all'
+    resources :cart_items, only: [:index, :create, :update, :destroy]
     resources :items, only: [:index, :show]
     root to: 'homes#top'
     get 'homes/about'
