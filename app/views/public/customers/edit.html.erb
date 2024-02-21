@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <h4 class="my-5">会員情報編集</h4>
-<%= form_with model:@customer, local:true do |f| %>
+　 <%= form_with(model: current_customer, url: customer_path, local: true, method: :patch) do |f| %>
   <div class="form-group">
     <%= f.label :氏名 %>
     <%= f.text_field :last_name, class: "form-control name" %>

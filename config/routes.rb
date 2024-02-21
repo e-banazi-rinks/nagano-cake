@@ -29,7 +29,7 @@ end
 
   scope module: :public do
     resources :addresses, only: [:index, :create, :edit, :update, :destroy]
-    resources :orders, only: [:new, :index, :show,]
+    resources :orders, only: [:new, :index, :show, :create]
     get 'customers/unsubscribe', as:'unsubscribe'
     patch 'customers/withdraw', as:'withdraw'
     resources :customers, only: [:show, :edit, :update]

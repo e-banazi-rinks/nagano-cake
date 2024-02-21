@@ -11,15 +11,15 @@
       </tr>
     </thead>
     <tbody>
-      <%#= @items.each do |item| %>
+      <% @orders.each do |order| %>
       <tr>
-        <th><%#= item.id %></th>
-        <th><%#= item.name %></th>
+        <th><%= l order.created_at %></th>
+        <th><%= order.post_code%></br><%= order.address %></br><%= order.name %></th>
         <th><%#= item.price %></th>
         <th><%#= item.genres.name %></th>
-        <th><%#= item.on_sale? ? '販売中' : '販売停止中' %></th>
-        <th><%#= item.genres.name %></th>
+        <th><%= order.order_status %></th>
+        <th><%= link_to "表示する",order_path(order.id) %></th>
       </tr>
-      <%# end %>
+      <% end %>
     </tbody>
   </table>
