@@ -8,4 +8,14 @@ class Customer < ApplicationRecord
   has_many :orders, dependent: :destroy
   has_many :cart_items, dependent: :destroy
   has_many :items, through: :cart_items
+  
+  with_options presence: true do
+    validates :last_name
+    validates :first_name
+    validates :last_name_kana
+    validates :first_name_kana
+    validates :post_code
+    validates :telephone_number
+    validates :email
+  end
 end
