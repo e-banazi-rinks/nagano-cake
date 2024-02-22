@@ -10,72 +10,83 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
- <body>
-  <header class="border border-bottom-3">
-    <nav class="navbar navbar-expand-lg bg-body-tertiary py-5">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="/"><span class="btn btn-light btn-lg">Nagano-Cake</span></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto">
-          <% if admin_signed_in? %>
-            <li>
-              <%= link_to "商品一覧", admin_items_path, class: "btn btn-light mx-3" %>
-            </li>
-            <li>
-              <%= link_to "会員一覧", root_path, class: "btn btn-light mx-3" %>
-            </li>
-            <li>
-              <%= link_to "注文履歴一覧", admin_root_path, class: "btn btn-light mx-3" %>
-            </li>
-            <li>
-              <%= link_to "ジャンル一覧", admin_genres_path, class: "btn btn-light mx-3" %>
-            </li>
-            <li>
-              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-light mx-3" %>
-            </li>
-          <% elsif customer_signed_in? %>
-            <div class="mx-auto p-2" style="width: 200px;">
-              ようこそ、<%= current_customer.last_name %>!
+  <body>
+   <header class="border border-bottom-3">
+     <div class="container-fluid">
+       <div class="row">
+         <div class="col-2">
+           <a class="navbar-brand" href="/"><span class="btn btn-light btn-lg ml-2 mt-4">Nagano-Cake</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+         </div>
+         <div class="col"></div>
+         <div class="col-8">
+           <nav class="navbar navbar-expand-lg bg-body-tertiary py-3">
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                <% if admin_signed_in? %>
+                  <li>
+                    <%= link_to "商品一覧", admin_items_path, class: "btn btn-light mx-3" %>
+                  </li>
+                  <li>
+                    <%= link_to "会員一覧", admin_customers_path, class: "btn btn-light mx-3" %>
+                  </li>
+                  <li>
+                    <%= link_to "注文履歴一覧", admin_root_path, class: "btn btn-light mx-3" %>
+                  </li>
+                  <li>
+                    <%= link_to "ジャンル一覧", admin_genres_path, class: "btn btn-light mx-3" %>
+                  </li>
+                  <li>
+                    <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-light mx-3" %>
+                  </li>
+                <% elsif customer_signed_in? %>
+                  <div class="mx-auto p-2" style="width: 200px;">
+                    ようこそ、<%= current_customer.last_name %>!
+                  </div>
+                  <li>
+                     <%= link_to "マイページ", customer_path(:id), class: "btn btn-light mx-3" %>
+                  </li>
+                  <li>
+                     <%= link_to '商品一覧', items_path, class: "btn btn-light mx-3" %>
+                  </li>
+                  <li>
+                     <%= link_to "カート", cart_items_path, class: "btn btn-light mx-3" %>
+                  </li>
+                  <li>
+                     <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-light mx-3" %>
+                  </li>
+                <% else %>
+                  <li>
+                     <%= link_to 'About', homes_about_path, class: "btn btn-light mx-3" %>
+                  </li>
+                  <li>
+                     <%= link_to "商品一覧", items_path, class: "btn btn-light mx-3"  %>
+                  </li>
+                  <li>
+                     <%= link_to '新規登録', new_customer_registration_path, class: "btn btn-light mx-3" %>
+                  </li>
+                  <li>
+                     <%= link_to "ログイン", new_customer_session_path, class: "btn btn-light mx-3" %>
+                  </li>
+                <% end %>
+                </ul>
+              </div>
+            </nav>
+            <div class="row mr-3 mb-3">
+              <div class="col"></div>
+              <div class="col-4">
+                <form class="d-flex" role="search">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+              </div>
             </div>
-            <li>
-               <%= link_to "マイページ", customer_path(:id), class: "btn btn-light mx-3" %>
-            </li>
-            <li>
-               <%= link_to '商品一覧', items_path, class: "btn btn-light mx-3" %>
-            </li>
-            <li>
-               <%= link_to "カート", cart_items_path, class: "btn btn-light mx-3" %>
-            </li>
-            <li>
-               <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-light mx-3" %>
-            </li>
-          <% else %>
-            <li>
-               <%= link_to 'About', homes_about_path, class: "btn btn-light mx-3" %>
-            </li>
-            <li>
-               <%= link_to "商品一覧", items_path, class: "btn btn-light mx-3"  %>
-            </li>
-            <li>
-               <%= link_to '新規登録', new_customer_registration_path, class: "btn btn-light mx-3" %>
-            </li>
-            <li>
-               <%= link_to "ログイン", new_customer_session_path, class: "btn btn-light mx-3" %>
-            </li>
-          <% end %>
-          </ul>
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form>
+          </div>
         </div>
       </div>
-    </nav>
-  </header>
- 
+    </header>
     <%= yield %>
   </body>
 </html>

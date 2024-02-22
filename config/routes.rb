@@ -18,14 +18,13 @@ devise_scope :admin do
 end
 
   namespace :admin do
-    get 'homes/top'
     root to: 'homes#top'
     resources :orders, only: [:show, :update] do
       resources :order_details, only:[:update]
     end
     resources :genres, only: [:index, :create, :edit, :update]
     resources :items, only: [:new, :create, :index, :show, :edit, :update]
-    resources :customers, only: [:index, :show, :update]
+    resources :customers, only: [:index, :show, :edit, :update]
   end
 
   scope module: :public do
