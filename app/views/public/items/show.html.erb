@@ -8,39 +8,33 @@
             <p>キャンディ</p>
         </div>
 
-         <div class="col-3">
-            <%= image_tag @item,size:"100x100" %>
+         <div class="col-4">
+            <%= image_tag @item.image,size:"500x300" %>
          </div>
 
-         <div class="col-6">
-            <table>
-                <thead>
-                    <tr>
-                        <th>
-                          <%= @item.name %>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                       <td><%= @item.introduction %></td>
-                    </tr>
-                    <tr>
-                       <td><%= @item.price %></td>
-                    </tr>
-                    <tr>
-                       <td></td>
-                       <td>
-                           <%= form_with model:@cart_item,url:cart_items_path,method: :post,local:true do |f| %>
-                           <%= f.hidden_field :item_id, value: @item.id %>
-                           <%= f.hidden_field :customer_id, :value => current_customer.id %>
-                           <%= f.select :amount,[1,2,3,4,5,6,7,8,9,10],{include_blank: '個数選択'},required:true %>&emsp;
-                           <%= f.submit 'カートに入れる' ,class: 'btn btn-success btn-sm' %>
-                           <% end %>
-                       </td>
-                    </tr>
-                </tbody>
-            </table>
-         </div>
+        <div class="col-5">
+           <div class="row ml-4 mb-3">
+              <h1><%= @item.name %></h1>
+           </div>
+           <div class="row ml-4 mb-5">
+              <h4><%= @item.introduction %></h4>
+           </div>
+           <div class="row ml-4 mb-5">
+             <h3 class="font-weight-bold">
+               ￥<%= number_with_delimiter(@item.price) %>
+             </h3>
+             <div class="d-flex align-items-center ml-1">
+               (税込)
+             </div>
+           </div>
+           <div class="row ml-4">
+             <%= form_with model:@cart_item,url:cart_items_path,method: :post,local:true do |f| %>
+             <%= f.hidden_field :item_id, value: @item.id %>
+             <%= f.hidden_field :customer_id, :value => current_customer.id %>
+             <%= f.select :amount,*[1..10],{include_blank: '個数選択'},required:true %>&emsp;
+             <%= f.submit 'カートに入れる' ,class: 'btn btn-success btn-sm ml-4' %>
+             <% end %>
+           </div>
+        </div>
     </div>
 </div>
