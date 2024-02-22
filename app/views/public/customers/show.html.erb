@@ -1,6 +1,6 @@
 <h2>マイページ</h2>
 <strong>登録情報</strong>
-<span></span><%= link_to "編集する", edit_customer_path(@customer) %></span> <!-- 緑の編集ボタン（Fontawesome）-->
+<span></span><%= link_to "編集する", edit_customer_path(@customer), class: 'btn btn-success' %></span> <!-- 緑の編集ボタン（Fontawesome）-->
 
 <table>
   <tr>
@@ -32,10 +32,10 @@
 
 <div>
 <strong>配送先</strong>
-  <%= link_to "一覧を見る", addresses_path(@customer) %>
+  <%= link_to "一覧を見る", addresses_path(@customer), class: "btn btn-primary" %>
 </div>
 
 <div>
 <strong>注文履歴</strong>
-  <%= link_to "一覧を見る", orders_path(@customer) %>
+  <%= link_to "一覧を見る", orders_path(@customer), class: "btn btn-primary" %>
 </div>

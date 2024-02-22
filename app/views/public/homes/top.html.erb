@@ -1,10 +1,11 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-3">
-      <div class="genre_search_bar"></div>   <!--  検索サイドバー/実装予定  -->
+<div class="container-fluid border border-bottom-3">
+  <div class="row py-4">
+    <div class="col-lg-3 text-center mb-5 mx-auto">
+      <div class="genre_search_bar"><%= render 'layouts/search_sidebar' %></div>   <!--  検索サイドバー/実装予定  -->
+    </div>
 
-    <div class="col-md-9">
-      <div class="introduction-box">　　<!-- 紹介文 -->
+    <div class="col-lg-9">
+      <div class="introduction-box bg-primary text-white text-center mx-auto">　　<!-- 紹介文 -->
         <div class="introduction-text">
           <p>ようこそ、ながのCAKE！</p>
           <p>このサイトは、ケーキ販売のECサイトになります。</p>
@@ -13,15 +14,15 @@
         </div>
       </div>
 
-      <h1>新着商品</h1>
-      <div class="new-items-container">  <!-- 新着商品を横並びにする必要あり -->
+      <h2>新着商品</h2>
+      <div class="new-items-container d-flex flex-row mb-3">  <!-- 新着商品を横並びにする必要あり -->
         <% @items.each do |item| %>
-           <div class="new-items", style="display: flex;"> <!-- 商品画像・ない場合は"no_image.jpg" -->
+           <div class="new-items mx-3"> <!-- 商品画像・ない場合は"no_image.jpg" -->
              <%= link_to item_path(item.id) do %>
                <% if item.image.attached? %>
-                 <%= image_tag item.image, size: "200x100" %>
+                 <%= image_tag item.image, size: "180x130" %>
                <% else %>
-                 <% image_tag "no_image",size: "200x100" %>
+                 <% image_tag "no_image",size: "180x130" %><br>
                <% end %>
              <% end %>
              <p><%= item.name %></p>
@@ -29,7 +30,10 @@
            </div>
         <% end %>
       </div>
-      <%= link_to 'すべての商品を見る', items_path %>
-    </div>
+      <div>
+        <%= link_to 'すべての商品を見る', items_path %>
+      </div>
+</div>
+</div>
 </div>
 

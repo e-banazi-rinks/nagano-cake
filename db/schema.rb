@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 2024_02_20_023957) do
     t.integer "amount", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "customer_id"
+    t.integer "customer_id", null: false
     t.integer "item_id"
   end
 
@@ -90,17 +90,17 @@ ActiveRecord::Schema.define(version: 2024_02_20_023957) do
   end
 
   create_table "genres", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "items", force: :cascade do |t|
-    t.string "name"
-    t.text "introduction"
-    t.integer "price"
+    t.string "name", null: false
+    t.text "introduction", null: false
+    t.integer "price", null: false
     t.boolean "is_active"
-    t.integer "genre_id"
+
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "status"
