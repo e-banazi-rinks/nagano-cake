@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-lg-10 col-lg-offset-1 title">
+    <div class="col-lg-10 col-lg-offset-1 title my-5">
       <h2 class="bg-origin">配送先登録/一覧</h2>
     </div>
     <%= render 'layouts/error', obj: @address %>
@@ -29,7 +29,7 @@
 
 <div class="row">
   <div class="col-lg-10 col-lg-offset-1">
-    <table class="table table-bordered">
+    <table class="table table-bordered text-center">
       <thead class="table-dark">
         <tr>
           <th>郵便番号</th>
@@ -45,8 +45,12 @@
           <td><%= address.address %></td>
           <td><%= address.name %></td>
           <td>
-            <%= link_to "編集する", edit_address_path(address.id), class: 'btn btn-success' %>
-            <%= link_to "削除する", address_path(address.id), method: :delete, class: 'btn btn-danger' %>
+            <span class="mx-2">
+              <%= link_to "編集する", edit_address_path(address.id), class: 'btn btn-success' %>
+            </span>
+            <span>
+              <%= link_to "削除する", address_path(address.id), method: :delete, class: 'btn btn-danger' %>
+            </span>
           </td>
         </tr>
         <% end %>

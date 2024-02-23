@@ -24,6 +24,7 @@ class Public::OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @cart_items = current_customer.cart_items
+    @order_detail = @order.order_details.all
   end
   
   def confirm
