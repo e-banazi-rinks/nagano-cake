@@ -8,19 +8,19 @@
 
   <% @sum = 0 %>
 
-  <%# @cart_items.each do |cart_item| %>
+  <% @order.each do |cart_item| %>
 
     <tr>
       <td>
-        <%#= attachment_image_tag cart_item.item, :image, :fill, 300, 300, format: 'jpeg' %>
-        <%#= cart_item.item.name %>
+        <%= image_tag cart_item.item.image,size:"180x130" %>
+        <%= cart_item.item.name %>
       </td>
-      <td><%#= cart_item.item.with_tax_price %></td>
-      <td><%#= cart_item.amount %></td>]
-      <%# @sum += cart_item.subtotal %>
-      <td><%#= @sum %></td>
+      <td><%= cart_item.item.with_tax_price %></td>
+      <td><%= cart_item.amount %></td>
+      <% @sum += cart_item.subtotal %>
+      <td><%= cart_item.item.with_tax_price * cart_item.amount %></td>
     </tr>
-  <%# end %>
+  <% end %>
 </table>
 
 <table>
