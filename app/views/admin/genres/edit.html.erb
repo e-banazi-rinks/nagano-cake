@@ -10,7 +10,7 @@
 
     <div class="row ml-5 my-5">
       <p class="font-weight-bold ml-4">ジャンル名</p>
-      <%= form_with model: @genre, url:'/admin/genres/id', method: :patch do |f| %>
+      <%= form_with model: @genre, url: admin_genre_path(@genre.id), method: :patch do |f| %>
         <%= f.text_field :name,class:"mx-5"%>
         <%= f.submit '変更を保存',class:"btn btn-success" %>
       <% end %>
