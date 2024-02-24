@@ -19,10 +19,10 @@ end
 
   namespace :admin do
     root to: 'homes#top'
-    resources :orders, only: [:show, :update]
-    resources :order_details, only:[:update]
-    
-    resources :genres, only: [:index, :create, :edit, :update]
+    resources :orders, only: [:show, :update] do
+      resources :order_details, only:[:update]
+    end
+    resources :genres, only: [:index, :show,:create, :edit, :update]
     resources :items, only: [:new, :create, :index, :show, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
   end
