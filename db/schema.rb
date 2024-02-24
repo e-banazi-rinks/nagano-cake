@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_02_23_034331) do
+ActiveRecord::Schema.define(version: 2024_02_19_072154) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -62,11 +62,11 @@ ActiveRecord::Schema.define(version: 2024_02_23_034331) do
   end
 
   create_table "cart_items", force: :cascade do |t|
-    t.integer "amount"
+    t.integer "amount", null: false
+    t.integer "customer_id", null: false
+    t.integer "item_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "customer_id"
-    t.integer "item_id"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -90,30 +90,30 @@ ActiveRecord::Schema.define(version: 2024_02_23_034331) do
   end
 
   create_table "genres", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "items", force: :cascade do |t|
-    t.string "name"
-    t.text "introduction"
-    t.integer "price"
+    t.string "name", null: false
+    t.text "introduction", null: false
+    t.integer "price", null: false
     t.boolean "is_active"
+    t.integer "genre_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "status"
-    t.integer "genre_id"
   end
 
   create_table "order_details", force: :cascade do |t|
     t.integer "price"
     t.integer "amount"
     t.integer "making_status"
+    t.integer "item_id"
+    t.integer "order_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "order_id", null: false
-    t.integer "item_id", null: false
   end
 
   create_table "orders", force: :cascade do |t|
@@ -123,10 +123,10 @@ ActiveRecord::Schema.define(version: 2024_02_23_034331) do
     t.integer "shipping_cost"
     t.integer "total_payment"
     t.integer "payment_method"
-    t.integer "status"
+    t.integer "customer_id"
+    t.integer "order_status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "customer_id", null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

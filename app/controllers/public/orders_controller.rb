@@ -8,6 +8,16 @@ class Public::OrdersController < ApplicationController
   def create
       @order = Order.new(order_params)
     if @order.save
+      current_customer.cart_items.each do |cart_item|
+        order_details = OrderDetail.new
+        order_details.amount = cart_item.amount
+        order_details.order_id = @order.id
+        order_details.item_id = cart_item.item.id
+        order_details.manufacture_status = 0
+        order_details.save
+      end
+      # カート内の削除
+      CartItem.destroy_all
       redirect_to orders_path
     else
       @addresses = Address.all # 追加

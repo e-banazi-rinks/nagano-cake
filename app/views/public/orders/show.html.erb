@@ -59,15 +59,15 @@
         <th>数量</th>
         <th>小計</th>
       </tr>
-    　<% @cart_items.each do |cart_item| %>
+      <% @order.order_details.each do |order_detail| %>
       <tr>
-        <td><%= cart_item.item.name %></td>
-        <td><%= number_with_delimiter(cart_item.item.with_tax_price) %></td>
-        <td><%= cart_item.amount %></td>
-        <td><%= number_with_delimiter(cart_item.item.with_tax_price * cart_item.amount) %>円</td>
+        <td><%= order_detail.item.name %></td>
+        <td><%= order_detail.item.price + (order_detail.item.price * 0.1).floor %></td>
+        <td><%= order_detail.amount %></td>
+        <td><%= (order_detail.item.price + (order_detail.item.price * 0.1) * order_detail.amount).floor %>円</td>
+        <% end %>
       </tr>
   </table>
-  <% end %>
     </div>
   </div>
 </div>
