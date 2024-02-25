@@ -32,9 +32,10 @@ end
      post 'orders/confirm', as:'confirm'
     get 'orders/thanks', as:'thanks'
     resources :orders, only: [:new, :index, :show, :create]
+    get 'customers/my_page' => 'customers#show', as:'mypage'
     get 'customers/unsubscribe', as:'unsubscribe'
     patch 'customers/withdraw', as:'withdraw'
-    resources :customers, only: [:show, :edit, :update]
+    resources :customers, only: [:edit, :update]
     delete 'cart_items/destroy_all', as:'destroy_all'
     resources :cart_items, only: [:index, :create, :update, :destroy]
     resources :items, only: [:index, :show]
