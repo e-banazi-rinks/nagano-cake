@@ -1,7 +1,7 @@
 ja:
   time:
     formats:
-      default: "%Y/%m/%d "
+      default: "%Y/%m/%d"
       
   
   enums:
@@ -16,8 +16,8 @@ ja:
         credit_card: "クレジットカード"
         transfer: '銀行振込'
     order_detail:
-      manufacture_status:
-        impossible_manufacture: '着手不可'
-        waiting_manufacture: '製作待ち'
-        manufacturing: '製作中'
-        finish: '製作完了'
+      making_status:
+        making_unable: "着手不可"
+        waiting_for_making: "製作不可"
+        in_making: "製作中"
+        making_completed: "製作完了"
