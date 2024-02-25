@@ -18,7 +18,7 @@ class Public::OrdersController < ApplicationController
       end
       # カート内の削除
       CartItem.destroy_all
-      redirect_to orders_path
+      redirect_to thanks_path
     else
       @addresses = Address.all # 追加
       render :new
