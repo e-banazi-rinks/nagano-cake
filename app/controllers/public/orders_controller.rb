@@ -33,6 +33,7 @@ class Public::OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @cart_items = current_customer.cart_items
     @order_detail = @order.order_details.all
+    # @sum = 0
   end
 
   def confirm
