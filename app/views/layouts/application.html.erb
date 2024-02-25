@@ -43,7 +43,7 @@
                   </li>
                 <% elsif customer_signed_in? %>
                   <div class="mx-auto p-2" style="width: 200px;">
-                    ようこそ、<%= current_customer.last_name %>!
+                    ようこそ、<%= current_customer.last_name %>さん!
                   </div>
                   <li>
                      <%= link_to "マイページ", customer_path(:id), class: "btn btn-light mx-3" %>
