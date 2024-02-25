@@ -31,7 +31,7 @@
       <table class = "table table-bordered" >
       <tr>
         <td>商品合計</td>
-        <td><%= @order.total_payment %></td>
+        <td><%= @sum %></td>
       </tr>
       <tr>
         <td>配送料</td>
@@ -40,7 +40,7 @@
       <tr>
         <td>ご請求額</td>
         <td>
-          <%=  @order.total_payment + @order.shipping_cost %>
+          <%=  @order.total_payment  %>
         </td>
       </tr>
     </table>
@@ -59,14 +59,17 @@
         <th>数量</th>
         <th>小計</th>
       </tr>
+      <% @sum = 0 %>
+      
       <% @order.order_details.each do |order_detail| %>
       <tr>
         <td><%= order_detail.item.name %></td>
-        <td><%= order_detail.item.price + (order_detail.item.price * 0.1).floor %></td>
+        <td><%= order_detail.item.with_tax_price %></td>
         <td><%= order_detail.amount %></td>
-        <td><%= (order_detail.item.price + (order_detail.item.price * 0.1) * order_detail.amount).floor %>円</td>
-        <% end %>
+        <td><%= order_detail.subtotal %>円</td>
+         <% @sum += order_detail.subtotal %>
       </tr>
+      <% end %>
   </table>
     </div>
   </div>
