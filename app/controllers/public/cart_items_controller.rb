@@ -19,6 +19,12 @@ class Public::CartItemsController < ApplicationController
   def index
     @cart_items = CartItem.all
     @sum = 0
+    
+    if @cart_items.empty?
+      @empty_cart = true
+    else
+      @empty_cart = false
+    end
   end
   
   def update
