@@ -5,12 +5,12 @@
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field my-2">
     <%= f.label :メールアドレス %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email",size: "40x5" %>
   </div>
 
   <div class="field my-2">
     <%= f.label :パスワード %>
-    <%= f.password_field :password, autocomplete: "current-password" %>
+    <%= f.password_field :password, autocomplete: "current-password",size: "40x5"%>
   </div>
 
       <%= f.submit "ログイン" , class: "btn btn-primary" %>
