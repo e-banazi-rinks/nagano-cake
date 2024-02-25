@@ -2,10 +2,10 @@ class OrderDetail < ApplicationRecord
   belongs_to :order
   belongs_to :item
   
-  enum manufacture_status:{
-          impossible_manufacture:0,
-          waiting_manufacture:1,
-          manufacturing:2,
-          finish:3
+  enum making_status: { 
+          making_unable: 0, 
+          waiting_for_making: 1, 
+          in_making: 2, 
+          making_completed: 3 
         }
 end

@@ -1,10 +1,12 @@
-<h1>商品詳細</h1>
-
-<table>
-  <tr>
-    <th>商品画像</th>
-    <td><%= @item.introduction %></td>
-  </tr>
+<h5 class="bg-secondary" style="width: 150px; margin:30px 0 20px 200px;">商品詳細</h5>
+<div class="row">
+  <div class="col-lg-5 " >
+    <div class="float-right", style="height: 300px;">
+      <%= image_tag @item.image, size: "300x250" %>
+    </div>  
+  </div>
+  <div class="col-lg-6">
+  <table style="height: 300px;">
   <tr>
     <th>商品名</th>
     <td><%= @item.name%></td>
@@ -26,5 +28,6 @@
     <td><%= @item.on_sale? ? '販売中' : '販売停止中' %></td>
   </tr>
 </table>
-
- <%= link_to "この商品を編集する", edit_admin_item_path(@item) %>
+ <%= link_to "この商品を編集する", edit_admin_item_path(@item),class: "btn btn-success" %>
+ </div>
+</div>
