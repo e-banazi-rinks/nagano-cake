@@ -18,6 +18,6 @@ ja:
     order_detail:
       making_status:
         making_unable: "着手不可"
-        waiting_for_making: "製作不可"
+        waiting_for_making: "製作待ち"
         in_making: "製作中"
         making_completed: "製作完了"

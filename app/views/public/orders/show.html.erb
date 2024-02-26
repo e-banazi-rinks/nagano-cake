@@ -11,7 +11,11 @@
       </tr>
       <tr>
         <td>配送先</td>
-        <td><%= @order.post_code%><%= @order.address %><%= @order.name %></td>
+        <td>〒<%= @order.post_code%></br>
+            <%= @order.address %></br>
+            <%= @order.customer.last_name %>
+            <%= @order.customer.first_name %>
+        </td>
       </tr>
       <tr>
         <td>支払い方法</td>
@@ -31,7 +35,7 @@
       <table class = "table table-bordered" >
       <tr>
         <td>商品合計</td>
-        <td><%= @sum %></td>
+        <td><%=  @order.total_payment - @order.shipping_cost  %></td>
       </tr>
       <tr>
         <td>配送料</td>
@@ -59,7 +63,6 @@
         <th>数量</th>
         <th>小計</th>
       </tr>
-      <% @sum = 0 %>
       
       <% @order.order_details.each do |order_detail| %>
       <tr>
@@ -67,7 +70,6 @@
         <td><%= order_detail.item.with_tax_price %></td>
         <td><%= order_detail.amount %></td>
         <td><%= order_detail.subtotal %>円</td>
-         <% @sum += order_detail.subtotal %>
       </tr>
       <% end %>
   </table>

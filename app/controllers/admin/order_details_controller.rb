@@ -1,33 +1,26 @@
 class Admin::OrderDetailsController < ApplicationController
 before_action :authenticate_admin!
-  def update
+  def update 
     order_detail = OrderDetail.find(params[:id])
-    order_detail.update(making_status: params[:order_detail][:making_status])
     order = order_detail.order
-    if params[:order_detail][:making_status] == "in_making"
-       order.update(status:"making")
+    order_details = order.order_details.all
+   #@order_detail.update(order_detail_params)
+    
+   is_updated = true
+    if order_detail.update(order_detail_params)
+       order.update(order_status: "in_making") if order_detail.making_status == "in_making"
+       order_details.each do |order_detail| 
+          if order_detail.making_status != "in_making"
+            is_updated = false 
+          end
+       end
+       order.update(order_status: "preparing_ship") if is_updated
     end
-    
-    if is_all_order_details_making_completed(order)
-      order.update(status: 'preparing_ship')
-    end  
-    
-    flash[:notice] = "更新に成功しました。"
-    redirect_to admin_order_path(order_detail.order.id)
+       redirect_to admin_order_path(order)
   end
   
   private
-  
-  def order_detail_params
-    params.require(:order_detail).permit(:making_status)
-  end
-  
-  def is_all_order_details_making_completed(order)
-    order.order_details.each do |order_detail|
-      if order_detail.making_status != 'making_completed'
-        return false 
-      end
+    def order_detail_params
+      params.require(:order_detail).permit(:making_status)
     end
-    return true 
-  end  
 end

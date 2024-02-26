@@ -7,40 +7,44 @@
       <div class="col-6">
 
 <%= form_with(model: @item, url: '/admin/items', local: true) do |f| %>
-  <div>
-    <%= f.label :商品画像 %>
-    <%= f.file_field :image, accept: "image/*" %>
-  </div>
-  <div>
-    <%= f.label :商品名 %>
-    <%= f.text_field :name %>
-  </div>
-  <div>
-    <%= f.label :商品紹介 %>
-    <%= f.text_area :introduction %>
-  </div>
-  <div>
-    <%= f.label :ジャンル %>
-    <%= f.select :genre_id, options_from_collection_for_select(@genres, :id, :name), include_blank: "選択してください" %>
-  </div>
-  <div>
-    <%= f.label :税抜価格 %>
-    <%= f.text_field :price %>
-  </div>
+  <table>
+    <tr>
+      <td><%= f.label :商品画像 %></td>
+      <td><%= f.file_field :image, accept: "image/*" %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :商品名 %></td>
+      <td><%= f.text_field :name %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :商品紹介 %></td>
+      <td><%= f.text_area :introduction %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :ジャンル %></td>
+      <td><%= f.select :genre_id, options_from_collection_for_select(@genres, :id, :name), include_blank: "選択してください" %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :税抜価格 %></td>
+      <td><%= f.text_field :price %></td>
+    </tr>
   
   <div class="col-9">
-  <%= f.label :status, '販売ステータス'%>
-  
-    <div class="custom-control custom-radio custom-control-inline">
-      <%= f.radio_button :status, 'on_sale', checked: @item.status == 'on_sale', class: 'custom-control-input', id: 'status-on-sale' %>
-      <%= f.label :status, '販売中', class: 'custom-control-label', for: 'status-on-sale' %>
-    </div>
-    <div class="custom-control custom-radio custom-control-inline">
-      <%= f.radio_button :status, 'off_sale', checked: @item.status == 'off_sale', class: 'custom-control-input', id: 'status-off-sale' %>
-      <%= f.label :status, '販売停止中', class: 'custom-control-label', for: 'status-off-sale' %>
-    </div>
+    <tr>
+      <td><%= f.label :status, '販売ステータス'%></td>
+        <td>
+          <div class="custom-control custom-radio custom-control-inline">
+            <%= f.radio_button :status, 'on_sale', checked: @item.status == 'on_sale', class: 'custom-control-input', id: 'status-on-sale' %>
+            <%= f.label :status, '販売中', class: 'custom-control-label', for: 'status-on-sale' %>
+          </div>
+        <div class="custom-control custom-radio custom-control-inline">
+            <%= f.radio_button :status, 'off_sale', checked: @item.status == 'off_sale', class: 'custom-control-input', id: 'status-off-sale' %>
+            <%= f.label :status, '販売停止中', class: 'custom-control-label', for: 'status-off-sale' %>
+        </div>
+      </td>
+    </tr>
   </div>
-  
+   </table>
   <%= f.submit '新規登録',class: "btn btn-success" %>
 <% end %>
     </div>
