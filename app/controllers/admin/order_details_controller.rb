@@ -8,15 +8,15 @@ before_action :authenticate_admin!
     
    is_updated = true
     if order_detail.update(order_detail_params)
-       order.update(order_status: "in_making") if order_detail.making_status == "in_making"
+       order.update(order_status: "making") if order_detail.making_status == "in_making"
        order_details.each do |order_detail| 
-          if order_detail.making_status != "in_making"
+          if order_detail.making_status != "making_completed"
             is_updated = false 
           end
        end
        order.update(order_status: "preparing_ship") if is_updated
     end
-       redirect_to admin_order_path(order)
+       redirect_to admin_order_path(order.id)
   end
   
   private
