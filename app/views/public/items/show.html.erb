@@ -47,12 +47,13 @@
            </div>
            <div class="row ml-4 mb-5">
              <h3 class="font-weight-bold">
-               ￥<%= number_with_delimiter(@item.price) %>
+               ￥<%= number_with_delimiter(@item.with_tax_price) %>
              </h3>
              <div class="d-flex align-items-center ml-1">
                (税込)
              </div>
            </div>
+           <% if customer_signed_in? %>
            <div class="row ml-4">
              <%= form_with model:@cart_item,url:cart_items_path,method: :post,local:true do |f| %>
              <%= f.hidden_field :item_id, value: @item.id %>
@@ -61,6 +62,7 @@
              <%= f.submit 'カートに入れる' ,class: 'btn btn-success btn-sm ml-4' %>
              <% end %>
            </div>
+           <% end %>
         </div>
     </div>
 </div>

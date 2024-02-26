@@ -10,6 +10,7 @@
         </div>
 　    　<div class="d-flex flex-wrap mb-3">
           <% @items.each do |item| %>
+            <% if item.status == "on_sale" %>
           <div class="items mx-3">
             <%= link_to item_path(item.id) do %>  <!-- 商品画像・ない場合は"no_image.jpg" -->
               <% if item.image.attached? %>
@@ -18,12 +19,13 @@
                 <% image_tag "no_image",size: "180x130" %><br>
               <% end %>
             <% end %>
-            <p><%= item.name %></p>
+          <p><%= item.name %></p>
             <p><%= (item.price*1.1).floor.to_s(:delimited)%>(税込)</p>
-            </div>
-          <% end %>
+          </div>
+            <% end %>
+          <% end %> <!-- 追加 -->
         </div>
-        <%= paginate @items %>   <!--  ページネーションを入れる  -->
+      <%= paginate @items %>   <!--  ページネーションを入れる  -->
     </div>
   </div>
 </div>
