@@ -8,50 +8,67 @@
     </div>
 　 
 　  <%= form_with(model: current_customer, url: customer_path, local: true, method: :patch) do |f| %>
-    <div class="form-group">
-      <%= f.label :"名前", class: "col-lg-2" %>
-      <%= f.label :"(姓)", class: "col-lg-1 text-right" %>
-      <%= f.text_field :last_name, class:"col-lg-2" %>
-      <%= f.label :"(名)", class: "col-lg-1 text-right" %>
-      <%= f.text_field :first_name, class:"col-lg-2" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :"フリガナ", class: "col-lg-2" %>
-      <%= f.label :"(セイ)", class: "col-lg-1 text-right" %>
-      <%= f.text_field :last_name_kana, class:"col-lg-2" %>
-      <%= f.label :"(メイ)", class: "col-lg-1 text-right" %>
-      <%= f.text_field :first_name_kana, class:"col-lg-2" %>
-    </div>
-
-    <div class="frm-group">
-      <%= f.label :"郵便番号(ハイフンなし)", class: "col-lg-3" %>
-      <%= f.text_field :post_code, class:"col-lg-2" %>
-    </div>
-
-    <div class="form-group">
-       <%= f.label :"住所", class: "col-lg-2" %>
-       <%= f.text_field :address, class:"col-lg-4" %>
-    </div>
-
-
-    <div class="form-group">
-      <%= f.label :"電話番号(ハイフンなし)", class: "col-lg-3" %>
-      <%= f.text_field :telephone_number, class:"col-lg-4" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :"メールアドレス", class: "col-lg-2" %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"col-lg-2" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.submit "編集内容を保存", class: "btn btn-success" %>
-    </div>
+　  <table>
+　    <tbody>
+　      <tr>
+          <div class="form-group">
+            <td><%= f.label :"名前" %></td>
+            <td>
+              <%= f.label :"(姓)" %>
+              <%= f.text_field :last_name %>
+            </td>
+            <td>
+              <%= f.label :"(名)" %>
+              <%= f.text_field :first_name %>
+            </td>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group">
+            <td><%= f.label :"フリガナ" %></td>
+            <td>
+              <%= f.label :"(セイ)" %>
+              <%= f.text_field :last_name_kana %>
+            </td>
+            <td>
+              <%= f.label :"(メイ)" %>
+              <%= f.text_field :first_name_kana %>
+            </td>
+          </div>
+        </tr>
+        <tr>
+          <div class="frm-group">
+            <td><%= f.label :"郵便番号(ハイフンなし)" %></td>
+            <td><%= f.text_field :post_code %></td>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group">
+            <td><%= f.label :"住所" %></td>
+            <td><%= f.text_field :address%></td>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group">
+            <td><%= f.label :"電話番号(ハイフンなし)" %></td>
+            <td><%= f.text_field :telephone_number %></td>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group">
+            <td><%= f.label :"メールアドレス" %></td>
+            <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group">
+            <td></td>
+            <td><%= f.submit "編集内容を保存", class: "btn btn-success" %></td>
+            <td><%= link_to "退会する", unsubscribe_path, class: "btn btn-danger" %></td>
+          </div>
+        </tr>
+      </tbody>
+    </table>
     <% end %>
-  
-    <div class="form-group">
-      <%= link_to "退会する", unsubscribe_path, class: "btn btn-danger" %>
-    </div>
   </div>
 </div>
