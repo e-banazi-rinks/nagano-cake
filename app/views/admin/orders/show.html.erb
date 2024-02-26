@@ -6,7 +6,7 @@
     <table class="table table-borderless">
       <tr>
         <td>購入者</td>
-        <td><%= @order.customer.first_name %><%= @order.customer.last_name %></td>
+        <td><%= @order.customer.last_name %><%= @order.customer.first_name %></td>
       </tr>
       <tr>
         <td>注文日</td>
@@ -14,7 +14,10 @@
       </tr>
       <tr>
         <td>配送先</td>
-        <td><%= @order.post_code%><%= @order.address %><%= @order.name %></td>
+        <td><%= @order.post_code%></br>
+            <%= @order.address %></br>
+            <%= @order.name %>
+        </td>
       </tr>
       <tr>
         <td>支払い方法</td>
@@ -44,22 +47,28 @@
           <td>製作ステータス</td>
         </tr>
       </thead>
+      
+     
+  <% @sum = 0 %>
+      
   <% @order_details.each do |order_detail| %>
   
-  <% @sum = 0 %>
-  <% @sum += order_detail.item.with_tax_price %>
-  
+  <% @sum += order_detail.subtotal %>
   <%= form_with model: order_detail , url: admin_order_order_detail_path(order_detail.id), method: :patch , local: true do |f| %>
+        <tbody>
           <tr>
             <td><%= order_detail.item.name %></td>
-            <td><%= order_detail.item.with_tax_price %></td>
+            <td><%= order_detail.with_tax_price %></td>
             <td><%= order_detail.amount %></td>
-            <td><%= order_detail.item.with_tax_price * order_detail.amount %></td>
+            <td><%= order_detail.subtotal %></td>
             <td>
-              <%= f.select :maiking_status, OrderDetail.making_statuses_i18n.invert %>
+              <%#= f.select :maiking_status, OrderDetail.making_statuses_i18n.invert %>
+              
+              <%= f.select :maiking_status, OrderDetail.making_statuses_i18n.invert,{selected: order_detail.making_status} %>
               <%= f.submit "更新", class: "btn btn-success" %>
             </td>
           </tr>
+        </tbody>
         <% end %>
         <% end %>
       </table>

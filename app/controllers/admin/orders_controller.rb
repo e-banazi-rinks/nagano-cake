@@ -6,12 +6,15 @@ class Admin::OrdersController < ApplicationController
   end
   
   def update
-      order = Order.find(params[:id])
+    order = Order.find(params[:id])
+    order_details = order.order_details
     if order.update(order_params)
-      redirect_to admin_root_path
+      # order_details.update_all(making_status: 1) if order.order_status == 1
+      order_details.update_all(making_status: "waiting_for_making") if order.order_status == "confirm_payment"
+      redirect_to admin_root_path(order)
     else
       render :show
-    end  
+    end
   end
   
   private
