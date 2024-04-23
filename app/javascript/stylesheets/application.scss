@@ -1,0 +1,28 @@
+@use '~bootstrap/scss/bootstrap';
+
+.introduction-box{
+  margin-bottom: 20px;
+  width: 700px;
+  height: 300px;
+  background-image: url("/assets/short-cake.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+.introduction-text{
+  margin-top: 60px;
+  width: 500px;
+  height: 150px;
+  background-color: white;
+  margin: 50px auto;
+  border: 2px solid;
+  border-color: black;
+}
+
+.name {
+  color: black;
+  text-decoration: underline;
+}
+.field_with_errors {
+  display: inline-block;
+}

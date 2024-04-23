@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
 class Admin::SessionsController < Devise::SessionsController
-  before_action :authenticate_customer!
+  before_action :authenticate_admin!
+
+  def after_sign_out_path_for(resource_or_scope)
+    new_admin_session_path
+  end
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
